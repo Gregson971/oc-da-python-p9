@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>LitRevu</title>
+        <meta charset="utf-8" />
+        <meta name="description" content="LitRevu" />
+        <meta name="keywords" content="LitRevu" />
+        <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+    </head>
+
+    <body>
+        <header>
+            <h1>LitRevu</h1>
+
+            {% if user.is_authenticated %}
+                <nav>
+                    <ul class="menu">
+                        <li>
+                            <a href={% url 'home' %}>Flux</a>
+                        </li>
+                        <li>
+                            <a href={% url 'home' %}>Posts</a>
+                        </li>
+                        <li>
+                            <a href={% url 'home' %}>Abonnements</a>
+                        </li>
+                        <li>
+                            <a href={% url 'logout' %}>Se déconnecter</a>
+                        </li>
+                    </ul>
+                </nav>
+            {% endif %}
+        </header>
+
+        <div class="content">
+            {% block content %}
+            {% endblock content %}
+        </div>
+
+        <footer>
+            <p>© 2023 LitRevu</p>
+        </footer>
+    </body>
+</html>
