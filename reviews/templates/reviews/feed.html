@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Votre flux</h2>
+
+    <div>
+        <a href={% url 'create_ticket' %}>Demander une critique</a>
+
+        {% comment %} <a href={% url 'create_review' %}>Créer une critique</a> {% endcomment %}
+    </div>
+
+    {% for post in posts %}
+        {% if post.content_type == 'TICKET' %}
+            {% include "reviews/partials/ticket_snippet.html" with ticket=post %}
+
+        {% elif post.content_type == 'REVIEW' %}
+            {% include "reviews/partials/review_snippet.html" with review=post %}
+
+        {% endif %}
+
+    {% endfor %}
+{% endblock content %}

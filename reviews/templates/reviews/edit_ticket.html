@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Modifier le billet</h2>
+    <form method="post">
+        {{ edit_form.as_p }}
+        {% csrf_token %}
+        <button type="submit">Sauvegarder</button>
+    </form>
+
+    <p>
+        <a href="{% url 'view_posts' %}">Retour à tous mes posts</a>
+    </p>
+{% endblock content %}

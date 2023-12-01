@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Supprimer un billet</h1>
+
+    <p>Vous êtes sur le point de supprimer le billet : {{ ticket.title }}</p>
+    <p>Êtes-vous sûr de vouloir supprimer ce billet ?</p>
+
+    <form method="post">
+        {{ delete_form }}
+        {% csrf_token %}
+        <button type="submit">Oui, je veux supprimer ce billet</button>
+    </form>
+
+    <p>
+        <a href="{% url 'view_posts' %}">Retour à tous mes posts</a>
+    </p>
+{% endblock content %}
