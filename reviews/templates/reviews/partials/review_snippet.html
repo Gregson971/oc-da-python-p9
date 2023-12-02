@@ -1,0 +1,12 @@
+{% load reviews_extras %}
+
+<h4>{% get_review_writter_display review.user %}</h4>
+<p>{{ review.time_created }}</p>
+<p>{{ review.headline }} - {{ review.rating }}</p>
+<p>{{ review.body }}</p>
+
+<div class="ticket">
+    <h4>Billet : {% get_writter_display review.ticket.user %}</h4>
+    <p>{{ review.ticket.title }}</p>
+    <img alt="" width="" height="" src="{{ review.ticket.image.url }}" />
+</div>

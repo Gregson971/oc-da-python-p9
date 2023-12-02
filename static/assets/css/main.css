@@ -12,6 +12,7 @@ header {
     background-color: #2f2f2f;
     color: #ece2cf;
     padding: 8px 16px;
+    margin-bottom: 32px;
 }
 
 /* Menu */
@@ -55,4 +56,25 @@ footer {
 /* Form */
 form .errorlist {
     color: rgb(223, 7, 7);
+}
+
+.ticket {
+    padding: 16px;
+    border: 1px solid #2f2f2f;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+
+.review {
+    padding: 16px;
+    border: 1px solid #2f2f2f;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+
+.ticket_review_form {
+    padding: 16px;
+    border: 1px solid #2f2f2f;
+    border-radius: 4px;
+    margin-bottom: 16px;
 }

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Supprimer une critique</h1>
+
+    <p>Vous êtes sur le point de supprimer la critique : {{ review.headline }}</p>
+    <p>À propos de : {{ ticket.title }}</p>
+    <p>Êtes-vous sûr de vouloir supprimer ce billet ?</p>
+
+    <form method="post">
+        {{ delete_form }}
+        {% csrf_token %}
+        <button type="submit">Oui, je veux supprimer cette critique</button>
+    </form>
+
+    <p>
+        <a href="{% url 'view_posts' %}">Retour à tous mes posts</a>
+    </p>
+{% endblock content %}

@@ -8,10 +8,24 @@
     {% if posts %}
         {% for post in posts %}
             {% if post.content_type == 'TICKET' %}
-                {% include "reviews/partials/ticket_snippet.html" with ticket=post %}
+                <div class="ticket">
+                    {% include "reviews/partials/ticket_snippet.html" with ticket=post %}
+
+                    <div class="ticket__actions">
+                        <a href="{% url 'edit_ticket' post.id %}">Modifier</a>
+                        <a href="{% url 'delete_ticket' post.id %}">Supprimer</a>
+                    </div>
+                </div>
 
             {% elif post.content_type == 'REVIEW' %}
-                {% include "reviews/partials/review_snippet.html" with review=post %}
+                <div class="review">
+                    {% include "reviews/partials/review_snippet.html" with review=post %}
+
+                    <div class="review__actions">
+                        <a href="{% url 'edit_ticket_review' post.ticket.id post.id %}">Modifier</a>
+                        <a href="{% url 'delete_ticket_review' post.ticket.id post.id %}">Supprimer</a>
+                    </div>
+                </div>
 
             {% endif %}
 

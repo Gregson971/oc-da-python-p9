@@ -1,17 +1,9 @@
 {% load reviews_extras %}
-{% load reviews_extras %}
 
-<div class="post">
-    <h4>Billet : {{ title.title }}</h4>
-    <p>{{ ticket.description }}</p>
-    <img alt="" width="" height="" src="{{ ticket.image.url }}" />
-    <p>
-        <strong>Écrit par {% get_writter_display ticket.user %}</strong>
-    </p>
-    <p>{{ ticket.time_created }}</p>
-
-    <p>
-        <a href="{% url 'edit_ticket' ticket.id %}">Modifier</a>
-        <a href="{% url 'delete_ticket' ticket.id %}">Supprimer</a>
-    </p>
-</div>
+<h4>Billet : {{ ticket.title }}</h4>
+<p>{{ ticket.description }}</p>
+<img alt="" width="" height="" src="{{ ticket.image.url }}" />
+<p>
+    <strong>Écrit par {% get_writter_display ticket.user %}</strong>
+</p>
+<p>{{ ticket.time_created }}</p>
