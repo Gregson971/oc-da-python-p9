@@ -78,3 +78,12 @@ form .errorlist {
     border-radius: 4px;
     margin-bottom: 16px;
 }
+
+.followed_user {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border: 1px solid #2f2f2f;
+}

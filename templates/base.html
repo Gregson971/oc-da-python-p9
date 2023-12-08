@@ -24,7 +24,7 @@
                             <a href={% url 'view_posts' %}>Posts</a>
                         </li>
                         <li>
-                            <a href={% url 'home' %}>Abonnements</a>
+                            <a href={% url 'follow_users' %}>Abonnements</a>
                         </li>
                         <li>
                             <a href={% url 'logout' %}>Se déconnecter</a>
@@ -34,10 +34,15 @@
             {% endif %}
         </header>
 
-        <div class="content">
-            {% block content %}
-            {% endblock content %}
-        </div>
+        <main class="container">
+            {% if messages %}
+                {% for message in messages %}<div class="alert alert-{{ message.tags }}">{{ message }}</div>{% endfor %}
+            {% endif %}
+            <div class="content">
+                {% block content %}
+                {% endblock content %}
+            </div>
+        </main>
 
         <footer>
             <p>© 2023 LitRevu</p>

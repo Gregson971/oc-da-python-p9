@@ -56,19 +56,3 @@ class Ticket(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         self.resize_image()
-
-
-class UserFollows(models.Model):
-    '''
-    Model for a user following another user.
-
-    Attributes:
-        user (ForeignKey): The user who is following another user.
-        followed_user (ForeignKey): The user who is being followed.
-    '''
-
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="following")
-    followed_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="followed_by")
-
-    class Meta:
-        unique_together = ("user", "followed_user")  # a user can only follow another user once

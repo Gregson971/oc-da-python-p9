@@ -16,7 +16,7 @@
 
                 {% if not post.has_reviewed %}
                     <div class="ticket__actions">
-                        <a href={% url 'create_ticket_review post.id' %}>Créer une critique</a>
+                        <a href={% url 'create_ticket_review' post.id %}>Créer une critique</a>
                     </div>
                 {% endif %}
             </div>

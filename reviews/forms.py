@@ -25,3 +25,7 @@ class ReviewForm(forms.ModelForm):
 
 class DeleteReviewForm(forms.Form):
     delete_review = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+
+
+class FollowUsersForm(forms.Form):
+    followed_user = forms.CharField(label=False, widget=forms.TextInput())

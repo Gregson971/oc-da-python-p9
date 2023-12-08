@@ -1,9 +1,12 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required, permission_required
-from django.db.models import Value, CharField
+from django.shortcuts import render, redirect, get_object_or_404
+from django.db import IntegrityError
+from django.db.models import Value, CharField, Q
 
 from itertools import chain
 
+from authentication.models import User, UserFollows
 from . import forms
 from . import models
 
@@ -12,7 +15,13 @@ from . import models
 def feed(request):
     # returns queryset of reviews for users followed by the current user
     followed_users = request.user.follows.all()
-    reviews = models.Review.objects.filter(user__in=followed_users).order_by('-time_created')
+    reviews = models.Review.objects.filter(
+        # the user who wrote the review is in the list of followed users
+        Q(user__in=followed_users)
+        |
+        # the user who wrote the review is the current user
+        Q(user=request.user)
+    ).order_by('-time_created')
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
 
     # returns queryset of tickets for users followed by the current user
@@ -25,7 +34,7 @@ def feed(request):
     # Dectect if a follows user has already reviewed a ticket
     for post in posts:
         if post.content_type == 'TICKET':
-            post.has_reviewed = models.Review.objects.filter(ticket=post, user__in=followed_users).exists()
+            post.has_reviewed = models.Review.objects.filter(Q(ticket=post)).exists()
 
     return render(request, 'reviews/feed.html', context={'posts': posts})
 
@@ -199,3 +208,52 @@ def create_ticket_and_review(request):
     }
 
     return render(request, 'reviews/create_ticket_and_review.html', context=context)
+
+
+@login_required
+def follow_users(request):
+    follow_form = forms.FollowUsersForm()
+
+    if request.method == 'POST':
+        follow_form = forms.FollowUsersForm(request.POST)
+
+        if follow_form.is_valid():
+            try:
+                followed_user = User.objects.get(username=request.POST['followed_user'])
+                if request.user == followed_user:
+                    messages.error(request, 'You can\'t subscribe to yourself!')
+                else:
+                    try:
+                        UserFollows.objects.create(user=request.user, followed_user=followed_user)
+                        request.user.follows.add(followed_user)
+                        messages.success(request, f'You are now following {followed_user}!')
+                    except IntegrityError:
+                        messages.error(request, f'You are already following {followed_user}!')
+
+            except User.DoesNotExist:
+                messages.error(request, f'The user {follow_form.data["followed_user"]} does not exist.')
+
+    user_follows = request.user.follows.all()
+    followed_by = UserFollows.objects.filter(followed_user=request.user).order_by('user')
+
+    context = {
+        'follow_form': follow_form,
+        'followed_users': user_follows,
+        'following_users': followed_by,
+    }
+
+    return render(request, 'reviews/follow_users.html', context=context)
+
+
+@login_required
+def unfollow_users(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+
+    try:
+        UserFollows.objects.get(user=request.user, followed_user=user).delete()
+        request.user.follows.remove(user)
+        messages.success(request, f'You have unfollowed {user}!')
+    except UserFollows.DoesNotExist:
+        messages.error(request, f'You are not following {user}!')
+
+    return redirect('follow_users')
