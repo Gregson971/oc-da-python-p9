@@ -19,6 +19,7 @@ header {
 .menu {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -26,6 +27,7 @@ header {
 
 .menu li {
     padding: 8px;
+    position: relative;
 }
 
 .menu li a {
@@ -35,6 +37,33 @@ header {
 
 .menu li a:hover {
     text-decoration: underline;
+}
+
+/* Sous-menus */
+.submenu {
+    display: none;
+    position: absolute;
+    background: #2f2f2f;
+    border: 1px solid #ccc;
+    padding: 0;
+    width: 150px;
+    right: 0;
+}
+
+.menu li:hover .submenu {
+    display: block;
+}
+
+.submenu li {
+    display: block;
+}
+
+/* Profile picture */
+.profil_picture_container img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
 }
 
 /* Content */

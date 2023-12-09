@@ -27,7 +27,34 @@
                             <a href={% url 'follow_users' %}>Abonnements</a>
                         </li>
                         <li>
-                            <a href={% url 'logout' %}>Se déconnecter</a>
+                            <a href="#">
+                                <div class="profil_picture_container">
+                                    {% if request.user.profile_photo %}
+                                        <img class="profil_picture"
+                                             width="40px"
+                                             height="40px"
+                                             src="{{ request.user.profile_photo.url }}"
+                                             alt="Avatar de {{ request.user }}" />
+                                    {% else %}
+                                        <img class="profil_picture"
+                                             width="40px"
+                                             height="40px"
+                                             src="{% static 'assets/images/default_avatar.png' %}"
+                                             alt="Avatar par défaut" />
+                                    {% endif %}
+                                </div>
+                            </a>
+                            <ul class="submenu">
+                                <li>
+                                    <a href={% url 'upload_profile_picture' %}>Modifier la photo de profil</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'password_change' %}>Modifier le mot de passe</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'logout' %}>Se déconnecter</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </nav>
