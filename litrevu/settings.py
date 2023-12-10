@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "authentication",
     "reviews",
+    "tailwind",
+    "theme",
+    "django_browser_reload",
 ]
 
 MIDDLEWARE = [
@@ -49,6 +52,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = "litrevu.urls"
@@ -135,3 +139,10 @@ LOGOUT_REDIRECT_URL = "login"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR.joinpath("media/")
+
+# TailwindCSS settings
+TAILWIND_APP_NAME = 'theme'
+NPM_BIN_PATH = "/Users/gregorylama/.nvm/versions/node/v19.8.1/bin/npm"
+INTERNAL_IPS = [
+    "127.0.0.1",
+]

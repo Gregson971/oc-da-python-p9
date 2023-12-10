@@ -1,4 +1,5 @@
 {% load static %}
+{% load static tailwind_tags %}
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -8,6 +9,7 @@
         <meta name="description" content="LitRevu" />
         <meta name="keywords" content="LitRevu" />
         <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+        {% tailwind_css %}
     </head>
 
     <body>
