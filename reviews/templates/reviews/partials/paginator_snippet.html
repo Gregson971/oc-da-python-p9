@@ -1,0 +1,32 @@
+{% if page_obj.paginator.num_pages > 1 %}
+    <div class="flex items-center pagination">
+        {% if page_obj.has_previous %}
+            <a href="?page=1"
+               class="flex justify-center items-center content-center rounded-full h-7 w-16 mx-2 bg-white text-sky-900 hover:bg-sky-700 hover:text-white">First</a>
+            <a href="?page={{ page_obj.previous_page_number }}"
+               class="flex justify-center items-center content-center rounded-full h-7 w-11 mx-2 bg-white text-sky-900 hover:bg-sky-700 hover:text-white">&lt;&lt;</a>
+        {% else %}
+            <span class="flex justify-center items-center content-center rounded-full h-7 w-16 mx-2 bg-sky-900 text-white  opacity-50">First</span>
+            <span class="flex justify-center items-center content-center rounded-full h-7 w-11 mx-2 bg-sky-900 text-white  opacity-50">&lt;&lt;</span>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <span class="flex justify-center items-center content-center rounded-full h-7 w-7 mx-2 bg-sky-900 text-white">{{ num }}</span>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a href="?page={{ num }}"
+                   class="flex justify-center items-center content-center rounded-full h-7 w-7 mx-2 bg-white text-sky-900 hover:bg-sky-700 hover:text-white">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}"
+               class="flex justify-center items-center content-center rounded-full h-7 w-11 mx-2 bg-white text-sky-900 hover:bg-sky-700 hover:text-white">&gt;&gt;</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}"
+               class="flex justify-center items-center content-center rounded-full h-7 w-16 mx-2 bg-white text-sky-900 hover:bg-sky-700 hover:text-white">Last</a>
+        {% else %}
+            <span class="flex justify-center items-center content-center rounded-full h-7 w-11 mx-2 bg-sky-900 text-white  opacity-50">&gt;&gt;</span>
+            <span class="flex justify-center items-center content-center rounded-full h-7 w-16 mx-2 bg-sky-900 text-white  opacity-50">Last</span>
+        {% endif %}
+    </div>
+{% endif %}

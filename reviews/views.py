@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db import IntegrityError
 from django.db.models import Value, CharField, Q
+from django.core.paginator import Paginator
 
 from itertools import chain
 
@@ -36,7 +37,12 @@ def feed(request):
         if post.content_type == 'TICKET':
             post.has_reviewed = models.Review.objects.filter(Q(ticket=post)).exists()
 
-    return render(request, 'reviews/feed.html', context={'posts': posts})
+    paginator = Paginator(posts, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {'page_obj': page_obj}
+
+    return render(request, 'reviews/feed.html', context=context)
 
 
 @login_required
@@ -52,7 +58,12 @@ def view_posts(request):
     # combine and sort the two types of posts
     posts = sorted(chain(reviews, tickets), key=lambda post: post.time_created, reverse=True)
 
-    return render(request, 'reviews/posts.html', context={'posts': posts})
+    paginator = Paginator(posts, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {'page_obj': page_obj}
+
+    return render(request, 'reviews/posts.html', context=context)
 
 
 @login_required

@@ -11,7 +11,7 @@
            href="{% url 'create_ticket_and_review' %}">Créer une critique</a>
     </div>
 
-    {% for post in posts %}
+    {% for post in page_obj %}
         {% if post.content_type == 'TICKET' %}
             <div class="bg-white my-4 border-solid border border-slate-200 p-4 rounded">
                 {% include "reviews/partials/ticket_snippet.html" with ticket=post %}
@@ -33,4 +33,7 @@
         {% endif %}
 
     {% endfor %}
+
+    {% include "reviews/partials/paginator_snippet.html" %}
+
 {% endblock content %}

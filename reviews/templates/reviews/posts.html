@@ -5,8 +5,8 @@
 {% block content %}
     <h2 class="text-2xl my-6">Vos posts</h2>
 
-    {% if posts %}
-        {% for post in posts %}
+    {% if page_obj %}
+        {% for post in page_obj %}
             {% if post.content_type == 'TICKET' %}
                 <div class="ticket bg-white my-4 border-solid border border-slate-200 p-4 rounded">
                     {% include "reviews/partials/ticket_snippet.html" with ticket=post %}
@@ -34,6 +34,9 @@
             {% endif %}
 
         {% endfor %}
+
+        {% include "reviews/partials/paginator_snippet.html" %}
+
     {% else %}
         <p>Vous n'avez créé aucun post pour le moment</p>
     {% endif %}
