@@ -35,6 +35,6 @@ def upload_profile_picture(request):
         form = forms.UploadProfilePictureForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect("upload_picture_done")
+            return render(request, "authentication/upload_profile_picture_done.html")
 
     return render(request, "authentication/upload_profile_picture.html", {"form": form})

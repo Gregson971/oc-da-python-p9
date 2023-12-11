@@ -81,7 +81,7 @@ def edit_ticket(request, ticket_id):
 
     if request.method == 'POST':
         if 'edit_ticket' in request.POST:
-            edit_form = forms.TicketForm(request.POST, instance=ticket)
+            edit_form = forms.TicketForm(request.POST, request.FILES, instance=ticket)
             if edit_form.is_valid():
                 edit_form.save()
                 return redirect('view_posts')
@@ -221,17 +221,17 @@ def follow_users(request):
             try:
                 followed_user = User.objects.get(username=request.POST['followed_user'])
                 if request.user == followed_user:
-                    messages.error(request, 'You can\'t subscribe to yourself!')
+                    messages.error(request, 'Vous ne pouvez pas vous abonner à vous-même!')
                 else:
                     try:
                         UserFollows.objects.create(user=request.user, followed_user=followed_user)
                         request.user.follows.add(followed_user)
-                        messages.success(request, f'You are now following {followed_user}!')
+                        messages.success(request, f'Vous êtes maintenant abonné à {followed_user}!')
                     except IntegrityError:
-                        messages.error(request, f'You are already following {followed_user}!')
+                        messages.error(request, f'Vous êtes déjà abonné à {followed_user}!')
 
             except User.DoesNotExist:
-                messages.error(request, f'The user {follow_form.data["followed_user"]} does not exist.')
+                messages.error(request, f'L\'utilisateur {follow_form.data["followed_user"]} n\'existe pas!')
 
     user_follows = request.user.follows.all()
     followed_by = UserFollows.objects.filter(followed_user=request.user).order_by('user')
@@ -252,8 +252,8 @@ def unfollow_users(request, user_id):
     try:
         UserFollows.objects.get(user=request.user, followed_user=user).delete()
         request.user.follows.remove(user)
-        messages.success(request, f'You have unfollowed {user}!')
+        messages.success(request, f'Vous vous êtes désabonné de {user}!')
     except UserFollows.DoesNotExist:
-        messages.error(request, f'You are not following {user}!')
+        messages.error(request, f'Vous n\'êtes pas abonné à {user}!')
 
     return redirect('follow_users')

@@ -1,28 +1,31 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Votre flux</h2>
+    <h2 class="text-2xl my-6">Votre flux</h2>
 
-    <div>
-        <a href={% url 'create_ticket' %}>Demander une critique</a>
+    <div class="my-8">
+        <a class="shadow-md border-solid border-2 p-2 border-sky-900 rounded bg-sky-900 hover:bg-sky-700 hover:shadow-none hover:border-sky-700 text-white mr-4"
+           href="{% url 'create_ticket' %}">Demander une critique</a>
 
-        <a href={% url 'create_ticket_and_review' %}>Créer une critique</a>
+        <a class="border-solid border-2 p-2 border-sky-900 rounded hover:bg-sky-900/75 hover:text-white"
+           href="{% url 'create_ticket_and_review' %}">Créer une critique</a>
     </div>
 
     {% for post in posts %}
         {% if post.content_type == 'TICKET' %}
-            <div class="ticket">
+            <div class="bg-white my-4 border-solid border border-slate-200 p-4 rounded">
                 {% include "reviews/partials/ticket_snippet.html" with ticket=post %}
 
                 {% if not post.has_reviewed %}
-                    <div class="ticket__actions">
-                        <a href={% url 'create_ticket_review' post.id %}>Créer une critique</a>
+                    <div class="flex justify-end my-6">
+                        <a class="shadow-md border-solid border-2 p-2 border-sky-900 rounded bg-sky-900 hover:bg-sky-700 hover:shadow-none hover:border-sky-700 text-white mr-4"
+                           href="{% url 'create_ticket_review' post.id %}">Créer une critique</a>
                     </div>
                 {% endif %}
             </div>
 
         {% elif post.content_type == 'REVIEW' %}
-            <div class="review">
+            <div class="bg-white my-4 border-solid border border-slate-200 p-4 rounded">
                 {% include "reviews/partials/review_snippet.html" with review=post %}
 
             </div>

@@ -1,0 +1,23 @@
+{% load static %}
+
+<div class="rounded-full bg-white">
+    {% if user.profile_photo %}
+        <img class="rounded-full ring-2 ring-slate-100"
+             width="{{ size|default:'40' }}px"
+             height="{{ size|default:'40' }}px"
+             src="{{ user.profile_photo.url }}"
+             alt="Avatar de {{ user }}"
+             style="height: {{ size|default:'40' }}px !important;
+                    width: {{ size|default:'40' }}px !important;
+                    max-width: inherit !important" />
+    {% else %}
+        <img class="rounded-full ring-2 ring-slate-100"
+             width="{{ size|default:'40' }}px"
+             height="{{ size|default:'40' }}px"
+             src="{% static 'assets/images/default_avatar.png' %}"
+             alt="Avatar par défaut"
+             style="height: {{ size|default:'40' }}px !important;
+                    width: {{ size|default:'40' }}px !important;
+                    max-width: inherit !important" />
+    {% endif %}
+</div>

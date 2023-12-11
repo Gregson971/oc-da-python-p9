@@ -1,20 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="ticket_review_form">
-        <h2>Créer une critique</h2>
+    <h2 class="text-2xl my-6">Créer une critique</h2>
 
+    <div class="bg-white my-4 border-solid border border-slate-200 p-4 rounded">
         <form method="post" enctype="multipart/form-data">
-            <h3>Livre / Article</h3>
+            <h3 class="text-xl my-6">Livre / Article</h3>
 
             {{ ticket_form.as_p }}
 
-            <hr />
+            <hr class="my-6" />
 
-            <h3>Critique</h3>
+            <h3 class="text-xl my-6">Votre critique</h3>
             {{ review_form.as_p }}
             {% csrf_token %}
-            <button type="submit">Envoyer</button>
+            <p class="flex justify-end">
+                <button class="shadow-md border-solid border-2 p-2 border-sky-900 rounded bg-sky-900 hover:bg-sky-700 hover:shadow-none hover:border-sky-700 text-white mr-4"
+                        type="submit">Envoyer</button>
+            </p>
         </form>
     </div>
+
+    <p>
+        <a class="group" href="{% url 'home' %}">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24"
+                 fill="currentColor"
+                 class="w-6 h-6 inline-block">
+                <path fill-rule="evenodd" d="M7.72 12.53a.75.75 0 010-1.06l7.5-7.5a.75.75 0 111.06 1.06L9.31 12l6.97 6.97a.75.75 0 11-1.06 1.06l-7.5-7.5z" clip-rule="evenodd" />
+            </svg>
+            <span class="group-hover:underline">Retour</span>
+        </a>
+    </p>
 {% endblock content %}

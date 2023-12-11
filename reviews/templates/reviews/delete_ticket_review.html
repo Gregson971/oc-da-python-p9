@@ -1,19 +1,38 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Supprimer une critique</h1>
+    <h2 class="text-2xl my-6">Supprimer une critique</h2>
 
-    <p>Vous êtes sur le point de supprimer la critique : {{ review.headline }}</p>
-    <p>À propos de : {{ ticket.title }}</p>
-    <p>Êtes-vous sûr de vouloir supprimer ce billet ?</p>
+    <div class="bg-white my-4 border-solid border border-slate-200 p-4 rounded">
+        <p>
+            Vous êtes sur le point de supprimer la critique : <strong>{{ review.headline }}</strong>
+        </p>
+        <p class="my-6">
+            À propos de : <strong>{{ ticket.title }}</strong>
+        </p>
+        <p class="my-6">Êtes-vous sûr de vouloir supprimer ce billet ?</p>
 
-    <form method="post">
-        {{ delete_form }}
-        {% csrf_token %}
-        <button type="submit">Oui, je veux supprimer cette critique</button>
-    </form>
+        <form method="post">
+            {{ delete_form }}
+            {% csrf_token %}
+            <button class="shadow-md border-solid border-2 p-2 border-red-800 rounded bg-red-800 hover:bg-red-600 hover:shadow-none hover:border-red-600 text-white mr-4"
+                    type="submit">Oui, je veux supprimer cette critique</button>
+
+            <a class="group text-sky-900" href="{% url 'view_posts' %}">
+                <span class="group-hover:underline">Non, je ne veux pas supprimer cette critique</span>
+            </a>
+        </form>
+    </div>
 
     <p>
-        <a href="{% url 'view_posts' %}">Retour à tous mes posts</a>
+        <a class="group" href="{% url 'view_posts' %}">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24"
+                 fill="currentColor"
+                 class="w-6 h-6 inline-block">
+                <path fill-rule="evenodd" d="M7.72 12.53a.75.75 0 010-1.06l7.5-7.5a.75.75 0 111.06 1.06L9.31 12l6.97 6.97a.75.75 0 11-1.06 1.06l-7.5-7.5z" clip-rule="evenodd" />
+            </svg>
+            <span class="group-hover:underline">Retour</span>
+        </a>
     </p>
 {% endblock content %}

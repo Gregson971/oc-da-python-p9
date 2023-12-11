@@ -1,9 +1,26 @@
 {% load reviews_extras %}
 
-<h4>Billet : {{ ticket.title }}</h4>
-<p>{{ ticket.description }}</p>
-<img alt="" width="" height="" src="{{ ticket.image.url }}" />
-<p>
-    <strong>Écrit par {% get_writter_display ticket.user %}</strong>
-</p>
-<p>{{ ticket.time_created }}</p>
+<div class="flex">
+    <div class="mr-6">
+        {% include "reviews/partials/avatar_snippet.html" with user=review.user size="60" %}
+
+    </div>
+    <div class="w-full">
+        <p class="border-solid border-b border-slate-200 pb-2">
+            <span class="rounded-full bg-slate-800 text-white py-1 px-2">Billet</span>
+            <span class="text-slate-800 mx-4">{% get_writter_display ticket.user %}</span>
+            <span class="text-slate-600">{{ ticket.time_created|get_posted_at_display }}</span>
+        </p>
+        <h4 class="my-4 text-lg">{{ ticket.title }}</h4>
+        <div class="flex">
+            {% if ticket.image %}
+                <img class="h-36 mr-3"
+                     alt=""
+                     width=""
+                     height=""
+                     src="{{ ticket.image.url }}" />
+            {% endif %}
+            <p>{{ ticket.description }}</p>
+        </div>
+    </div>
+</div>

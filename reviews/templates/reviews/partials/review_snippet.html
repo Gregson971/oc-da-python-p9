@@ -1,12 +1,40 @@
 {% load reviews_extras %}
 
-<h4>{% get_review_writter_display review.user %}</h4>
-<p>{{ review.time_created }}</p>
-<p>{{ review.headline }} - {{ review.rating }}</p>
-<p>{{ review.body }}</p>
+<div class="flex">
+    <div class="mr-6">
+        {% include "reviews/partials/avatar_snippet.html" with user=review.user size="60" %}
 
-<div class="ticket">
-    <h4>Billet : {% get_writter_display review.ticket.user %}</h4>
-    <p>{{ review.ticket.title }}</p>
-    <img alt="" width="" height="" src="{{ review.ticket.image.url }}" />
+    </div>
+    <div class="w-full">
+        <p class="border-solid border-b border-slate-200  pb-2">
+            <span class="rounded-full bg-slate-500 text-white py-1 px-2">Critique</span>
+            <span class="text-slate-800 mx-4">{% get_review_writter_display review.user %}</span>
+            <span class="text-slate-600">{{ review.time_created|get_posted_at_display }}</span>
+        </p>
+
+        <h4 class="my-4 text-lg">
+            {{ review.headline }} - <span class="text-yellow-400 text-2xl tracking-wider">{% star_rating review.rating %}</span>
+        </h4>
+
+        <p class="my-4">{{ review.body }}</p>
+
+        <div class="bg-slate-100 my-4 border-solid border border-slate-200 p-4 rounded">
+            <p class="border-solid border-b border-slate-200 pb-2">
+                <span class="rounded-full bg-slate-800 text-white py-1 px-2">Billet</span>
+                <span class="text-slate-800 mx-4">{% get_writter_display review.ticket.user %}</span>
+                <span class="text-slate-600">{{ review.ticket.time_created|get_posted_at_display }}</span>
+            </p>
+            <h4 class="my-4 text-lg">{{ review.ticket.title }}</h4>
+            <div class="flex">
+                {% if review.ticket.image %}
+                    <img class="h-36 mr-3"
+                         alt=""
+                         width=""
+                         height=""
+                         src="{{ review.ticket.image.url }}" />
+                {% endif %}
+                <p>{{ review.ticket.description }}</p>
+            </div>
+        </div>
+    </div>
 </div>
