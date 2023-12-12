@@ -1,0 +1,12 @@
+[flake8]
+max-line-length = 119
+
+exclude =
+    __pycache__,
+    venv,
+    .gitignore,
+    .vscode/,
+    env/,
+    */migrations/*,
+    README.md,
+    requirements.txt

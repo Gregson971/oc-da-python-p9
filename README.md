@@ -93,3 +93,11 @@ Identifiant : **Admin** | Mot de passe : **litrevu2023**
 - Créer des critiques, en réponse ou non à des tickets ;
 - Voir ses propres posts, les modifier ou les supprimer ;
 - Suivre d'autres utilisateurs, ou se désabonner.
+
+### Générer un rapport flake8-html
+
+```sh
+flake8 --format=html --htmldir=flake-report
+```
+
+![flake8-report](img-documentation/p9_flake8_report.png)

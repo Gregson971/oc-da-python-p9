@@ -22,8 +22,21 @@ class SignupForm(UserCreationForm):
 
 
 class EditProfileForm(forms.ModelForm):
+    '''
+    Form for editing a user's profile.
+    '''
+
+    # Profile photo is optional
     profile_photo = forms.ImageField(required=False)
 
     class Meta:
+        '''
+        Meta class for EditProfileForm.
+
+        Attributes:
+            model (User): The user model.
+            fields (tuple): The fields to display in the form.
+        '''
+
         model = get_user_model()
         fields = ('username', 'first_name', 'last_name', 'email', 'profile_photo')

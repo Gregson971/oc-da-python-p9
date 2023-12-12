@@ -13,6 +13,8 @@ django-browser-reload==1.12.1
 django-tailwind==3.6.0
 djlint==1.34.0
 EditorConfig==0.12.3
+flake8==6.1.0
+flake8-html==0.4.3
 html-tag-names==0.1.2
 html-void-elements==0.1.0
 idna==3.6
@@ -21,9 +23,12 @@ jsbeautifier==1.14.11
 json5==0.9.14
 markdown-it-py==3.0.0
 MarkupSafe==2.1.3
+mccabe==0.7.0
 mdurl==0.1.2
 pathspec==0.11.2
 Pillow==10.1.0
+pycodestyle==2.11.1
+pyflakes==3.1.0
 Pygments==2.17.2
 python-dateutil==2.8.2
 python-slugify==8.0.1

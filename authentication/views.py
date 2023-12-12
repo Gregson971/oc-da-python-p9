@@ -29,6 +29,16 @@ def signup_page(request):
 
 
 def edit_profile(request):
+    '''
+    View for the edit profile page.
+
+    Args:
+        request (HttpRequest): The request object.
+
+    Returns:
+        HttpResponse: The response object.
+    '''
+
     form = forms.EditProfileForm(instance=request.user)
 
     if request.method == "POST":
