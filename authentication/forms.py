@@ -8,9 +8,6 @@ class SignupForm(UserCreationForm):
     Form for signing up a new user.
     '''
 
-    # Define profile_photo field as an ImageField with required=False
-    profile_photo = forms.ImageField(required=False)
-
     class Meta(UserCreationForm.Meta):
         '''
         Meta class for SignupForm.
@@ -21,10 +18,12 @@ class SignupForm(UserCreationForm):
         '''
 
         model = get_user_model()
-        fields = ("username", "email", "first_name", "last_name", "profile_photo")
+        fields = ('username',)
 
 
-class UploadProfilePictureForm(forms.ModelForm):
+class EditProfileForm(forms.ModelForm):
+    profile_photo = forms.ImageField(required=False)
+
     class Meta:
         model = get_user_model()
-        fields = ('profile_photo',)
+        fields = ('username', 'first_name', 'last_name', 'email', 'profile_photo')

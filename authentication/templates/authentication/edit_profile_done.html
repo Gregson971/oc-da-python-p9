@@ -1,17 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2 class="text-2xl my-6">Télécharger une photo de profil</h2>
+    <h2 class="text-2xl my-6">Modifier votre profil</h2>
 
     <div class="bg-white my-4 border-solid border border-slate-200 p-4 rounded sm:w-3/5 sm:mx-auto">
-        <form method="post" enctype="multipart/form-data">
-            {{ form.as_p }}
-            {% csrf_token %}
-            <p class="flex justify-end">
-                <button class="shadow-md border-solid border-2 p-2 border-sky-900 rounded bg-sky-900 hover:bg-sky-700 hover:shadow-none hover:border-sky-700 text-white mr-4"
-                        type="submit">Télécharger</button>
-            </p>
-        </form>
+        <p>
+            Vous avez modifié votre profil avec succès ! Cliquez <a class="font-bold hover:underline" href={% url 'home' %}>ici</a> pour revenir à la page d’accueil.
+        </p>
     </div>
 
     <p>

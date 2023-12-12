@@ -85,7 +85,7 @@ Identifiant : **Admin** | Mot de passe : **litrevu2023**
 ### Fonctionnalités
 
 - Se connecter et s'inscrire ;
-- Modifier, ajouter une image de profil ;
+- Modifier les informations de son profil ;
 - Modifier son mot de passe ;
 - Consulter un flux contenant les tickets et critiques des utilisateurs auxquels on est abonné ;
 - Créer des tickets de demande de critique ;

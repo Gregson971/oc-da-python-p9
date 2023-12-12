@@ -28,13 +28,13 @@ def signup_page(request):
     return render(request, "authentication/signup.html", {"form": form})
 
 
-def upload_profile_picture(request):
-    form = forms.UploadProfilePictureForm(instance=request.user)
+def edit_profile(request):
+    form = forms.EditProfileForm(instance=request.user)
 
     if request.method == "POST":
-        form = forms.UploadProfilePictureForm(request.POST, request.FILES, instance=request.user)
+        form = forms.EditProfileForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
-            return render(request, "authentication/upload_profile_picture_done.html")
+            return render(request, "authentication/edit_profile_done.html")
 
-    return render(request, "authentication/upload_profile_picture.html", {"form": form})
+    return render(request, "authentication/edit_profile.html", {"form": form})
