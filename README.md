@@ -64,3 +64,32 @@ python manage.py runserver
 ```
 
 7. Dans le navigateur de votre choix, se rendre à l'adresse http://127.0.0.1:8000/
+
+### Django administration
+
+&rarr; http://127.0.0.1:8000/admin/
+
+Identifiant : **Admin** | Mot de passe : **litrevu2023**
+
+### Liste des utilisateurs existants
+
+| _Identifiant_ | _Mot de passe_ |
+| ------------- | -------------- |
+| JohnDoe       | P@$$word123    |
+| JaneDoe       | P@$$word123    |
+| BobLeponge    | P@$$word123    |
+| BruceLee      | P@$$word123    |
+| ChuckNorris   | P@$$word123    |
+| LisaSimpson   | P@$$word123    |
+
+### Fonctionnalités
+
+- Se connecter et s'inscrire ;
+- Modifier, ajouter une image de profil ;
+- Modifier son mot de passe ;
+- Consulter un flux contenant les tickets et critiques des utilisateurs auxquels on est abonné ;
+- Créer des tickets de demande de critique ;
+- Créer un billet et une critique sur ce même billet en une seule étape, pour créer des critiques « à partir de zéro » ;
+- Créer des critiques, en réponse ou non à des tickets ;
+- Voir ses propres posts, les modifier ou les supprimer ;
+- Suivre d'autres utilisateurs, ou se désabonner.
