@@ -44,6 +44,9 @@
                             </a>
                             <ul class="bg-sky-900 absolute right-0 top-14 w-max hidden group-hover:block">
                                 <li class="p-2">
+                                    <span class="font-bold text-white">Welcome {{ request.user.username }} !</span>
+                                </li>
+                                <li class="p-2">
                                     <a class="hover:underline" href={% url 'upload_profile_picture' %}>Modifier la photo de profil</a>
                                 </li>
                                 <li class="p-2">

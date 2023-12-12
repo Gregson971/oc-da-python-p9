@@ -17,7 +17,7 @@ class User(AbstractUser):
         (CREATOR, 'Créateur'),
         (SUBSCRIBER, 'Abonné'),
     )
-    profile_photo = models.ImageField(verbose_name='Photo de profil')
+    profile_photo = models.ImageField(verbose_name='Photo de profil', null=True, blank=True)
     role = models.CharField(max_length=30, choices=ROLE_CHOICES, verbose_name='Rôle', default=CREATOR)
     follows = models.ManyToManyField(
         "self", limit_choices_to={'role': CREATOR}, symmetrical=False, verbose_name="suit"
