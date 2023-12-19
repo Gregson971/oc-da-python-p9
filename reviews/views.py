@@ -105,7 +105,7 @@ def edit_ticket(request, ticket_id):
 @login_required
 @permission_required('reviews.delete_ticket', raise_exception=True)
 def delete_ticket(request, ticket_id):
-    ticket = get_object_or_404(models.Ticket, id=ticket_id)
+    ticket = get_object_or_404(models.Ticket, id=ticket_id, user=request.user)
     delete_form = forms.DeleteTicketForm()
 
     if request.method == 'POST':
@@ -150,7 +150,7 @@ def create_ticket_review(request, ticket_id):
 @permission_required('reviews.change_review', raise_exception=True)
 def edit_ticket_review(request, ticket_id, review_id):
     ticket = get_object_or_404(models.Ticket, id=ticket_id)
-    review = get_object_or_404(models.Review, id=review_id)
+    review = get_object_or_404(models.Review, id=review_id, user=request.user)
     edit_form = forms.ReviewForm(instance=review)
 
     if request.method == 'POST':
@@ -172,7 +172,7 @@ def edit_ticket_review(request, ticket_id, review_id):
 @permission_required('reviews.delete_review', raise_exception=True)
 def delete_ticket_review(request, ticket_id, review_id):
     ticket = get_object_or_404(models.Ticket, id=ticket_id)
-    review = get_object_or_404(models.Review, id=review_id)
+    review = get_object_or_404(models.Review, id=review_id, user=request.user)
     delete_form = forms.DeleteReviewForm()
 
     if request.method == 'POST':
