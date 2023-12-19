@@ -47,13 +47,14 @@
                                     <span class="font-bold text-white">Welcome {{ request.user.username }} !</span>
                                 </li>
                                 <li class="p-2">
-                                    <a class="hover:underline" href={% url 'edit_profile' %}>Modifier votre profil</a>
+                                    <a class="hover:underline" href={% url 'authentication:edit_profile' %}>Modifier votre profil</a>
                                 </li>
                                 <li class="p-2">
-                                    <a class="hover:underline" href={% url 'password_change' %}>Modifier le mot de passe</a>
+                                    <a class="hover:underline"
+                                       href="{% url 'authentication:password_change' %}">Modifier le mot de passe</a>
                                 </li>
                                 <li class="p-2">
-                                    <a class="hover:underline" href={% url 'logout' %}>Se déconnecter</a>
+                                    <a class="hover:underline" href={% url 'authentication:logout' %}>Se déconnecter</a>
                                 </li>
                             </ul>
                         </li>

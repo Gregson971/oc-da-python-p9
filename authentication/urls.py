@@ -3,6 +3,9 @@ from django.urls import path
 
 from . import views
 
+# Namespace for the authentication app
+app_name = 'authentication'
+
 urlpatterns = [
     path(
         '',
