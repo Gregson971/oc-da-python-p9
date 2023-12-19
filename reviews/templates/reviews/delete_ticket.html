@@ -16,7 +16,7 @@
                 <button class="shadow-md border-solid border-2 p-2 border-red-800 rounded bg-red-800 hover:bg-red-600 hover:shadow-none hover:border-red-600 text-white mr-4"
                         type="submit">Oui, je veux supprimer ce billet</button>
 
-                <a class="group text-sky-900" href="{% url 'view_posts' %}">
+                <a class="group text-sky-900" href="{% url 'reviews:view_posts' %}">
                     <span class="group-hover:underline">Non, je ne veux pas supprimer ce billet</span>
                 </a>
             </p>
@@ -25,7 +25,7 @@
     </div>
 
     <p>
-        <a class="group" href="{% url 'view_posts' %}">
+        <a class="group" href="{% url 'reviews:view_posts' %}">
             <svg xmlns="http://www.w3.org/2000/svg"
                  viewBox="0 0 24 24"
                  fill="currentColor"

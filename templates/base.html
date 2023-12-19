@@ -15,7 +15,7 @@
 
     <body class="bg-slate-100 font-sans text-base">
         <header class="flex justify-between items-center bg-sky-900 text-white mb-8 px-4 py-2">
-            <a href="{% url 'home' %}">
+            <a href="{% url 'reviews:home' %}">
                 <div class="flex">
                     <img width="40px"
                          height="40px"
@@ -29,13 +29,13 @@
                 <nav>
                     <ul class="flex justify-between items-center">
                         <li class="p-2">
-                            <a class="hover:underline" href={% url 'home' %}>Flux</a>
+                            <a class="hover:underline" href={% url 'reviews:home' %}>Flux</a>
                         </li>
                         <li class="p-2">
-                            <a class="hover:underline" href={% url 'view_posts' %}>Posts</a>
+                            <a class="hover:underline" href={% url 'reviews:view_posts' %}>Posts</a>
                         </li>
                         <li class="p-2">
-                            <a class="hover:underline" href={% url 'follow_users' %}>Abonnements</a>
+                            <a class="hover:underline" href={% url 'reviews:follow_users' %}>Abonnements</a>
                         </li>
                         <li class="p-2 relative group">
                             <a href="#">

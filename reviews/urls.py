@@ -2,6 +2,9 @@ from django.urls import path
 
 from . import views
 
+# Namespace for the reviews app
+app_name = 'reviews'
+
 urlpatterns = [
     path('feed/', views.feed, name='home'),
     path('posts/', views.view_posts, name='view_posts'),

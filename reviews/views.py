@@ -77,7 +77,7 @@ def create_ticket(request):
             ticket = ticket_form.save(commit=False)
             ticket.user = request.user
             ticket.save()
-            return redirect('view_posts')
+            return redirect('reviews:view_posts')
 
     context = {'ticket_form': ticket_form}
 
@@ -87,7 +87,7 @@ def create_ticket(request):
 @login_required
 @permission_required('reviews.change_ticket', raise_exception=True)
 def edit_ticket(request, ticket_id):
-    ticket = get_object_or_404(models.Ticket, id=ticket_id)
+    ticket = get_object_or_404(models.Ticket, id=ticket_id, user=request.user)
     edit_form = forms.TicketForm(instance=ticket)
 
     if request.method == 'POST':
@@ -95,7 +95,7 @@ def edit_ticket(request, ticket_id):
             edit_form = forms.TicketForm(request.POST, request.FILES, instance=ticket)
             if edit_form.is_valid():
                 edit_form.save()
-                return redirect('view_posts')
+                return redirect('reviews:view_posts')
 
     context = {'edit_form': edit_form}
 
@@ -113,7 +113,7 @@ def delete_ticket(request, ticket_id):
             delete_form = forms.DeleteTicketForm(request.POST)
             if delete_form.is_valid():
                 ticket.delete()
-                return redirect('view_posts')
+                return redirect('reviews:view_posts')
 
     context = {
         'delete_form': delete_form,
@@ -136,7 +136,7 @@ def create_ticket_review(request, ticket_id):
             review.user = request.user
             review.ticket = ticket
             review.save()
-            return redirect('view_posts')
+            return redirect('reviews:view_posts')
 
     context = {
         'review_form': review_form,
@@ -158,7 +158,7 @@ def edit_ticket_review(request, ticket_id, review_id):
             edit_form = forms.ReviewForm(request.POST, instance=review)
             if edit_form.is_valid():
                 edit_form.save()
-                return redirect('view_posts')
+                return redirect('reviews:view_posts')
 
     context = {
         'edit_form': edit_form,
@@ -180,7 +180,7 @@ def delete_ticket_review(request, ticket_id, review_id):
             delete_form = forms.DeleteReviewForm(request.POST)
             if delete_form.is_valid():
                 review.delete()
-                return redirect('view_posts')
+                return redirect('reviews:view_posts')
 
     context = {
         'delete_form': delete_form,
@@ -211,7 +211,7 @@ def create_ticket_and_review(request):
             review.ticket = ticket
             review.save()
 
-            return redirect('view_posts')
+            return redirect('reviews:view_posts')
 
     context = {
         'ticket_form': ticket_form,
@@ -267,4 +267,4 @@ def unfollow_users(request, user_id):
     except UserFollows.DoesNotExist:
         messages.error(request, f'Vous n\'êtes pas abonné à {user}!')
 
-    return redirect('follow_users')
+    return redirect('reviews:follow_users')

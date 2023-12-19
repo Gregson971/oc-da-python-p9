@@ -13,9 +13,9 @@
 
                     <div class="flex justify-end my-6">
                         <a class="shadow-md border-solid border-2 p-2 border-sky-900 rounded bg-sky-900 hover:bg-sky-700 hover:shadow-none hover:border-sky-700 text-white mr-4"
-                           href="{% url 'edit_ticket' post.id %}">Modifier</a>
+                           href="{% url 'reviews:edit_ticket' post.id %}">Modifier</a>
                         <a class="shadow-md border-solid border-2 p-2 border-red-800 rounded bg-red-800 hover:bg-red-600 hover:shadow-none hover:border-red-600 text-white mr-4"
-                           href="{% url 'delete_ticket' post.id %}">Supprimer</a>
+                           href="{% url 'reviews:delete_ticket' post.id %}">Supprimer</a>
                     </div>
                 </div>
 
@@ -25,9 +25,9 @@
 
                     <div class="flex justify-end my-6">
                         <a class="shadow-md border-solid border-2 p-2 border-sky-900 rounded bg-sky-900 hover:bg-sky-700 hover:shadow-none hover:border-sky-700 text-white mr-4"
-                           href="{% url 'edit_ticket_review' post.ticket.id post.id %}">Modifier</a>
+                           href="{% url 'reviews:edit_ticket_review' post.ticket.id post.id %}">Modifier</a>
                         <a class="shadow-md border-solid border-2 p-2 border-red-800 rounded bg-red-800 hover:bg-red-600 hover:shadow-none hover:border-red-600 text-white mr-4"
-                           href="{% url 'delete_ticket_review' post.ticket.id post.id %}">Supprimer</a>
+                           href="{% url 'reviews:delete_ticket_review' post.ticket.id post.id %}">Supprimer</a>
                     </div>
                 </div>
 
