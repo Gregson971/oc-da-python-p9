@@ -49,4 +49,5 @@ class UserFollows(models.Model):
     followed_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="followed_by")
 
     class Meta:
-        unique_together = ("user", "followed_user")  # a user can only follow another user once
+        # a user can only follow another user once
+        constraints = [models.UniqueConstraint(fields=["user", "followed_user"], name="unique_follow")]
